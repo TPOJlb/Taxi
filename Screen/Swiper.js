@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 
 import Swiper from 'react-native-swiper'
 
 const styles = StyleSheet.create({
-    wrapper: {},
+    wrapper: {
+   },
     slide1: {
         flex: 1,
         justifyContent: 'center',
@@ -30,9 +31,9 @@ const styles = StyleSheet.create({
     }
 })
 
-export default function SwiperPage (){
+export default function SwiperPage ({navigation}){
         return (
-            <Swiper style={styles.wrapper} showsButtons={false}>
+            <Swiper style={styles.wrapper} stickyHeaderHiddenOnScroll = {false} showsButtons={false} loop = {false} dotColor={'white'} activeDotColor={'green'} title={123}>
                 <View style={styles.slide1}>
                     <Text style={styles.text}>Hello Swiper</Text>
                 </View>
@@ -40,7 +41,9 @@ export default function SwiperPage (){
                     <Text style={styles.text}>Beautiful</Text>
                 </View>
                 <View style={styles.slide3}>
-                    <Text style={styles.text}>And simple</Text>
+                    <TouchableOpacity onPress = {()=>navigation.navigate('Authentication')}>
+                        <Text>Ghbdtn</Text>
+                    </TouchableOpacity>
                 </View>
             </Swiper>
         )
