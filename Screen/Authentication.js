@@ -1,14 +1,10 @@
 import React from 'react'
 import {
     View,
-    Text,
     TextInput,
     StyleSheet,
-    TouchableOpacity,
 } from 'react-native'
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import AddInfo from '../AddInfoAndPhone';
-import {useNavigation} from "@react-navigation/native";
 
 export default class Authentication extends React.Component {
     state = {
@@ -45,14 +41,7 @@ export default class Authentication extends React.Component {
                     placeholderTextColor='white'
                     onChangeText={val => this.onChangeText('email', val)}
                 />
-                <TextInput
-                    style={styles.input}
-                    placeholder='Phone'
-                    autoCapitalize="none"
-                    placeholderTextColor='white'
-                    onChangeText={val => this.onChangeText('phone', val)}
-                />
-                <AddInfo state = {this.state} navigate={navigate}/>
+                <AddInfo state = {this.state} navigate={navigate} page = {false}/>
             </View>
         )
     }
