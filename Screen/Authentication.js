@@ -7,16 +7,20 @@ import {
     TouchableOpacity,
 } from 'react-native'
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import AddInfo from '../AddInfoAndPhone';
+import {useNavigation} from "@react-navigation/native";
 
 export default class Authentication extends React.Component {
     state = {
-        username: '', password: '', email: ''
+        username: '', password: '', email: '',phone: ''
     }
     onChangeText = (key, val) => {
         this.setState({[key]: val})
     }
 
     render() {
+        const navigate = this.props.navigation
+
         return (
             <View style={styles.container}>
                 <TextInput
@@ -41,23 +45,14 @@ export default class Authentication extends React.Component {
                     placeholderTextColor='white'
                     onChangeText={val => this.onChangeText('email', val)}
                 />
-                <View>
-                <TouchableOpacity onPress={async () => {
-                    const { username, password, email} = this.state
-                    try {
-                        await AsyncStorage.multiSet([['name', username], ['password', password], ['email', email]]);
-                        const result = await AsyncStorage.multiGet(['name', 'password','email'])
-                        console.log(result);
-                        this.props.navigation.navigate('Swiper')
-
-                    } catch (err) {
-                        console.log('error signing up: ', err)
-                    }
-                }}>
-                    <Text>Зарегестрировать новый аккаунт</Text>
-                </TouchableOpacity>
-              </View>
-
+                <TextInput
+                    style={styles.input}
+                    placeholder='Phone'
+                    autoCapitalize="none"
+                    placeholderTextColor='white'
+                    onChangeText={val => this.onChangeText('phone', val)}
+                />
+                <AddInfo state = {this.state} navigate={navigate}/>
             </View>
         )
     }

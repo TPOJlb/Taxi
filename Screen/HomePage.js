@@ -21,7 +21,7 @@ export default function HomePage({navigation}) {
     useEffect(async () => {
         setThee(await second());
         await first();
-       await fhtee();
+     //  await fhtee();
     }, [''])
     console.log('2'+thee);
     if (thee == null) {
