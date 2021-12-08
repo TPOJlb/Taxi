@@ -64,7 +64,7 @@ const Help = ({navigation,route}) => {
                 console.log('code'+code)
                 console.log('value'+value)
                 if(value.toString()===code.toString()){
-                alert('Пидорас')}
+                alert('Пароль верный')}
             else{
                 navigation.navigate('Person')
                               }}}>
