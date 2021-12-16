@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {SafeAreaView, Text, StyleSheet,TouchableOpacity} from 'react-native';
+import * as Location from 'expo-location';
 
 import {
     CodeField,
@@ -29,6 +30,9 @@ const styles = StyleSheet.create({
 const CELL_COUNT = 6;
 
 const Help = ({navigation,route}) => {
+    const [location, setLocation] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
+
     const [value, setValue] = useState('');
     const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
     const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -37,6 +41,29 @@ const Help = ({navigation,route}) => {
     });
 
     const {code} = route.params
+
+
+    useEffect(() => {
+        (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
+                setErrorMsg('Permission to access location was denied');
+                return;
+            }
+
+            let location = await Location.getCurrentPositionAsync({});
+            setLocation(location);
+        })();
+    }, []);
+
+    let text = 'Waiting..';
+    if (errorMsg) {
+        text = errorMsg;
+    } else if (location) {
+        text = JSON.stringify(location);
+    }
+
+console.log("33"+location)
     return (
         <SafeAreaView style={styles.root}>
             <Text style={styles.title}>Verification</Text>
@@ -66,7 +93,8 @@ const Help = ({navigation,route}) => {
                 if(value.toString()===code.toString()){
                 alert('Пароль верный')}
             else{
-                navigation.navigate('Person')
+                console.log('88'+location);
+                navigation.navigate('Person',{location})
                               }}}>
                 <Text>21123412</Text>
             </TouchableOpacity>

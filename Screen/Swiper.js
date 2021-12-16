@@ -1,8 +1,6 @@
-import React from 'react'
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-
-
-import Swiper from 'react-native-swiper'
+import React from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Swiper from 'react-native-swiper';
 
 const styles = StyleSheet.create({
     wrapper: {

@@ -1,38 +1,17 @@
-import React,{useEffect,useState} from 'react';
+import React from 'react';
 import MapView, {Marker} from 'react-native-maps';
 import {SafeAreaView, Text,View, StyleSheet,TouchableOpacity} from 'react-native';
 import MapViewDirections from 'react-native-maps-directions';
-import * as Location from 'expo-location';
 
-export default function Help() {
 
-    const [location, setLocation] = useState(null);
-    const [errorMsg, setErrorMsg] = useState(null);
 
-    useEffect(() => {
-        (async () => {
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                setErrorMsg('Permission to access location was denied');
-                return;
-            }
 
-            let location = await Location.getCurrentPositionAsync({});
-            setLocation(location);
-            console.log(location);
-        })();
-    }, []);
+export default function Help({route}) {
 
-    let text = 'Waiting..';
-    if (errorMsg) {
-        text = errorMsg;
-    } else if (location) {
-        text = JSON.stringify(location);
-    }
-
-    const origin = {latitude: 37.3318456, longitude: -122.0296002};
-    const destination = {latitude: 37.771707, longitude: -122.4053769};
-    const GOOGLE_MAPS_APIKEY = 'AIzaSyBlSNY7Ypt3IOUrvQzsA2YY2JVNnXn_o94';
+    console.log(route.params.location.coords);
+    // const origin = {latitude: location.locate.coords.latitude, longitude: location.locate.coords.longitude};
+    //  const destination = {latitude: 37.771707, longitude: -122.4053769};
+    // const GOOGLE_MAPS_APIKEY = 'AIzaSyBlSNY7Ypt3IOUrvQzsA2YY2JVNnXn_o94';
 
 
 
@@ -41,14 +20,12 @@ export default function Help() {
 
 
         <MapView style={{height:'100%',width:'100%'}}  initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
+            latitude: route.params.location.coords.latitude,
+            longitude: route.params.location.coords.longitude,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
         }}>
-            <View style={styles.container}>
-                <Text>{text}</Text>
-            </View>
+
             {/*<MapViewDirections*/}
             {/*    lineDashPattern={[0]}*/}
             {/*    origin={origin}*/}
@@ -63,14 +40,12 @@ export default function Help() {
 
         </MapView>
 
-
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#000',
         alignItems: 'center',
         justifyContent: 'center',
     },
