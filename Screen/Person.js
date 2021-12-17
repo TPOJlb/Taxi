@@ -4,7 +4,7 @@ import {SafeAreaView,Platform,Text,View, StyleSheet,TouchableOpacity,KeyboardAvo
 import MapViewDirections from 'react-native-maps-directions';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Geocoder from "react-native-geocoding";
-import {clear} from "react-native/Libraries/LogBox/Data/LogBoxData";
+import WhereAreYouGoing from "./WhereAreYouGoing";
 
 
 
@@ -29,32 +29,7 @@ export default function Help({route}) {
                 {(locat) ? ViewMap(locat,origin,refContainer):null}
             </MapView>
 
-
-
-
-    < View style={{width: '80%', height: '100%',left:35, position: 'absolute', top: 100}}>
-                <GooglePlacesAutocomplete
-                    fetchDetails={true}
-                    ref={refContainer}
-                    placeholder='Куда Хочешь?'
-                    enablePoweredByContainer={false}
-                    onPress={(data, details = null) => {
-                        Geocoder.from(data.description)
-                            .then(json => {
-                                const location = json.results[0].geometry.location;
-                                setLocat(location)
-
-                            })
-                            .catch(error => console.warn(error));
-
-                    }}
-                    query={{
-                        key: 'AIzaSyAmeaHFFepK5IAB_W8MMJp_V9cVmfUvrmE',
-                        language: 'ru',
-                    }}
-
-                />
-            </View>
+            <WhereAreYouGoing locat = {locat} setLocat = {setLocat} refContainer={refContainer}/>
         </View>
     );
 
