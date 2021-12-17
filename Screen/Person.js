@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import MapView, {Marker} from 'react-native-maps';
 import {SafeAreaView,Platform,Text,View, StyleSheet,TouchableOpacity,KeyboardAvoidingView} from 'react-native';
 import MapViewDirections from 'react-native-maps-directions';
@@ -12,10 +12,9 @@ import Geocoder from "react-native-geocoding";
 export default function Help({route}) {
     Geocoder.init("AIzaSyDl64BEliK8_tgkLSycOiXIZKszLXS7goQ", {language : "ru"});
 
-
-    // const origin = {latitude: route.params.location.coords.latitude, longitude: route.params.location.coords.longitude};
-    // const destination = {latitude: route.params.location.coords.latitude, longitude:route.params.location.coords.longitude};
-    // const GOOGLE_MAPS_APIKEY = 'AIzaSyBlSNY7Ypt3IOUrvQzsA2YY2JVNnXn_o94';
+        const[locat,setLocat] = useState('')
+    const origin = {latitude: route.params.location.coords.latitude, longitude: route.params.location.coords.longitude};
+    const GOOGLE_MAPS_APIKEY = 'AIzaSyBlSNY7Ypt3IOUrvQzsA2YY2JVNnXn_o94';
 
     return (
         <View style={StyleSheet.absoluteFillObject}>
@@ -27,16 +26,7 @@ export default function Help({route}) {
                 longitudeDelta: 0.0421,
             }}>
 
-                {/*<MapViewDirections*/}
-                {/*    lineDashPattern={[0]}*/}
-                {/*    origin={origin}*/}
-                {/*    destination={destination}*/}
-                {/*    apikey={GOOGLE_MAPS_APIKEY}*/}
-                {/*    strokeWidth={4}*/}
-                {/*    strokeColor="#111111"*/}
-                {/*/>*/}
-                {/*<Marker coordinate={origin} />*/}
-                {/*<Marker coordinate={destination} />*/}
+
 
             </MapView>
 
@@ -48,14 +38,29 @@ export default function Help({route}) {
 
                     placeholder='Search'
                     onPress={(data, details = null) => {
-                        console.log(data.description);
                         Geocoder.from(data.description)
                             .then(json => {
-                                let location = json.results[0].geometry.location;
-                                console.log(location);
+                                const location = json.results[0].geometry.location;
+                                setLocat(location)
                             })
                             .catch(error => console.warn(error));
+                        console.log(locat);
+                        const destination = {latitude: locat.lat, longitude: locat.lng};
+                        return (
+                            <View>
+                                <MapViewDirections
+                                    lineDashPattern={[0]}
+                                    origin={origin}
+                                    destination={destination}
+                                    apikey={GOOGLE_MAPS_APIKEY}
+                                    strokeWidth={4}
+                                    strokeColor="#111111"
+                                />
+                                <Marker coordinate={origin}/>
+                                <Marker coordinate={destination}/>
 
+                            </View>
+                        );
                     }}
                     query={{
                         key: 'AIzaSyAmeaHFFepK5IAB_W8MMJp_V9cVmfUvrmE',
