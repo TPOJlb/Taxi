@@ -1,6 +1,8 @@
 import React, {useState,useEffect} from 'react';
 import {SafeAreaView, Text, StyleSheet,TouchableOpacity} from 'react-native';
 import * as Location from 'expo-location';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import Geocoder from 'react-native-geocoding';
 
 import {
     CodeField,
@@ -43,6 +45,7 @@ const Help = ({navigation,route}) => {
     const {code} = route.params
 
 
+
     useEffect(() => {
         (async () => {
             let { status } = await Location.requestForegroundPermissionsAsync();
@@ -63,7 +66,6 @@ const Help = ({navigation,route}) => {
         text = JSON.stringify(location);
     }
 
-console.log("33"+location)
     return (
         <SafeAreaView style={styles.root}>
             <Text style={styles.title}>Verification</Text>
@@ -98,6 +100,8 @@ console.log("33"+location)
                               }}}>
                 <Text>21123412</Text>
             </TouchableOpacity>
+
+
         </SafeAreaView>
     );
 };
