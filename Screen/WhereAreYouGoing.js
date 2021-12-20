@@ -9,12 +9,12 @@ import Geocoder from "react-native-geocoding";
 
 
 
-export default function WhereAreYouGoing({locat,setLocat,refContainer}) {
+export default function WhereAreYouGoing({listNam,setListNam,locat,setLocat,refContainer}) {
     Geocoder.init("AIzaSyDl64BEliK8_tgkLSycOiXIZKszLXS7goQ", {language : "ru"});
     console.log(locat);
 
     return (
-
+        <View style={{flex:1}}>
             < View style={{position: 'absolute',width: '80%', height: '100%',left:35,  top: 100}}>
                 <GooglePlacesAutocomplete
                     fetchDetails={true}
@@ -39,6 +39,14 @@ export default function WhereAreYouGoing({locat,setLocat,refContainer}) {
 
                 />
             </View>
+        <View style={{position: 'absolute',width: '80%', height: '5%',left:35,top: 145}}>
+            <TouchableOpacity onPress={()=> setListNam(listNam + 1)}>
+                <Text>
+                    Погнали дальше)))
+                </Text>
+            </TouchableOpacity>
+        </View>
+        </View>
     );
 
 }
