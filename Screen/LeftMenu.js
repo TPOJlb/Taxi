@@ -9,6 +9,7 @@ import { StyleSheet, Text, View, TouchableOpacity,Image } from 'react-native'
 import Swiper from "react-native-swiper";
 import SwiperPage from "./Swiper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import PersonInfo from "../PersonInfo";
 
 export default function LeftMenu({route,navigation}) {
 
@@ -40,6 +41,7 @@ const location = route.params.location;
                 <Drawer.Screen name="Home" component={HomePage} />
                 <Drawer.Screen name="Swiper" component={SwiperPage}/>
                  <Drawer.Screen name="Person"  component={Person} initialParams={{ location: location }} />
+            <Drawer.Screen name="PersonInfo" component={PersonInfo} />
             </Drawer.Navigator>
     );
 }
