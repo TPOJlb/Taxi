@@ -10,9 +10,11 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo/vector-icons": "^12.0.0",
     "@mauron85/react-native-background-geolocation": "github:mauron85/react-native-background-geolocation",
     "@react-native-async-storage/async-storage": "^1.15.14",
     "@react-native-masked-view/masked-view": "^0.2.6",
+    "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "@react-navigation/stack": "^6.0.11",
@@ -24,22 +26,25 @@
     "react-native": "0.64.3",
     "react-native-android-keyboard-adjust": "^1.2.0",
     "react-native-confirmation-code-field": "^7.2.0",
+    "react-native-drawer": "^2.5.1",
     "react-native-elements": "^3.4.2",
     "react-native-geocoding": "^0.5.0",
-    "react-native-gesture-handler": "^2.1.0",
+    "react-native-gesture-handler": "1.9.0",
     "react-native-google-places-api": "^1.0.2",
     "react-native-google-places-autocomplete": "^2.4.1",
     "react-native-maps": "^0.29.4",
     "react-native-maps-directions": "^1.8.0",
     "react-native-phone-number-input": "^2.1.0",
+    "react-native-reanimated": "^2.3.0",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-swiper": "^1.6.0-rc.3",
     "react-native-web": "0.17.1",
-    "react-phone-number-input": "^3.1.41",
-    "@expo/vector-icons": "^12.0.0"
+    "react-phone-number-input": "^3.1.41"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "metro-react-native-babel-preset": "^0.66.2",
+    "react-native-dotenv": "^3.3.1"
   },
   "private": true
 }

@@ -27,7 +27,6 @@ export default class AddInfo extends React.Component {
                         try {
                             await AsyncStorage.multiSet([['name', username], ['password', password], ['email', email]]);
                             const result = await AsyncStorage.multiGet(['name', 'password', 'email'])
-                            console.log(result);
                             this.props.navigate.navigate('AddPhone')
                         } catch (err) {
                             console.log('error signing up: ', err)

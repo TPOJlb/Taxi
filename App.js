@@ -8,7 +8,7 @@ import Person from './Screen/Person';
 import Help from './Screen/Help';
 import {NavigationContainer} from "@react-navigation/native";
 import 'react-native-gesture-handler';
-
+import LeftMenu from './Screen/LeftMenu'
 
 const Stack = createNativeStackNavigator();
 
@@ -28,8 +28,10 @@ export default function App() {
                 <Stack.Screen name="Authentication" component={Authentication}/>
                 <Stack.Screen name="AddPhone" component={AddPhone}/>
                 <Stack.Screen name="Help" component={Help}/>
-                <Stack.Screen name="Person" component={Person}/>
+                <Stack.Screen name="LeftMenu" component={LeftMenu}/>
+
             </Stack.Navigator>
         </NavigationContainer>
+
     );
 }

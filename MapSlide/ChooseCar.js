@@ -7,7 +7,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 
 
-export default function ChooseCar({listNam,setListNam,distan,setDistan}) {
+export default function ChooseCar({listNam,setListNam,distan,setDistan,dura,setDura}) {
 
     return (
         <View style={{flex:1}}>
@@ -15,7 +15,9 @@ export default function ChooseCar({listNam,setListNam,distan,setDistan}) {
                 CarB.map(item => {
                     return(
                         <View key={item.key} style={{flex: 1, backgroundColor: 'white', width: '100%', height: 60,borderWidth:2,borderRadius:15,borderColor:'black',marginBottom:3}}>
-                            <TouchableOpacity style={{flexDirection:'row',flex: 1,margin:3}} onPress={()=> setListNam(listNam + 1)}>
+                            <TouchableOpacity style={{flexDirection:'row',flex: 1,margin:3}} onPress={()=> {
+                                alert("pidor you are welcome")
+                                setListNam(listNam + 1)}}>
                                 <Image source={item.image} style={{width: '20%', height: 54}}/>
                                 <View style={{justifyContent:'center',flex:1}}>
                                 <Text>  {item.name}</Text>
@@ -26,9 +28,10 @@ export default function ChooseCar({listNam,setListNam,distan,setDistan}) {
                                     </View>
 
                                 </View>
-                                <View style={{justifyContent:'center',alignItems:'flex-end',flex:1,flexDirection:'column'}}>
-                                    <Text>price {(item.price * distan).toFixed(2)} $   </Text>
-                                    <Text style={{fontSize:8}}>distance : {distan} km, p/h {item.price} $      </Text>
+                                <View style={{justifyContent:'center',alignItems:'flex-end',flex:1.5,flexDirection:'column'}}>
+                                    <Text>Price {(item.price * distan).toFixed(2)} $   </Text>
+                                    <Text style={{fontSize:8}}>distance : {distan} km, p/h = {item.price} $      </Text>
+                                    <Text style={{fontSize:8}}>time to finish {dura|0} minut   </Text>
                                 </View>
                             </TouchableOpacity>
                         </View>

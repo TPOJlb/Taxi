@@ -23,9 +23,9 @@ export default function HomePage({navigation}) {
         await first();
      //  await fhtee();
     }, [''])
-    console.log('2'+thee);
     if (thee == null) {
         navigation.navigate('Swiper');
+
     }
 
     return (

@@ -90,13 +90,10 @@ const Help = ({navigation,route}) => {
                 )}
             />
             <TouchableOpacity onPress={()=>{
-                console.log('code'+code)
-                console.log('value'+value)
                 if(value.toString()===code.toString()){
                 alert('Пароль верный')}
             else{
-                console.log('88'+location);
-                navigation.navigate('Person',{location})
+                navigation.navigate('LeftMenu',{location})
                               }}}>
                 <Text>21123412</Text>
             </TouchableOpacity>
