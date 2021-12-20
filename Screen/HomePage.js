@@ -21,7 +21,7 @@ export default function HomePage({navigation}) {
     useEffect(async () => {
         setThee(await second());
         await first();
-     //  await fhtee();
+     //await fhtee();
     }, [''])
     if (thee == null) {
         navigation.navigate('Swiper');
@@ -30,7 +30,7 @@ export default function HomePage({navigation}) {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={()=>navigation.navigate('Authentication')}>
+            <TouchableOpacity onPress={()=>navigation.navigate('AddPhone')}>
                 <Text>HomePage</Text>
             </TouchableOpacity>
         </View>);

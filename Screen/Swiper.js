@@ -34,7 +34,7 @@ export default function SwiperPage ({navigation}){
         return (
             <Swiper style={styles.wrapper} stickyHeaderHiddenOnScroll = {false} showsButtons={false} loop = {false} dotColor={'white'} activeDotColor={'green'} title={123}>
                 <View style={styles.slide1}>
-                    <Text style={styles.text}>Hello Swiper</Text>
+                    <Text style={styles.text}>У</Text>
                 </View>
                 <View style={styles.slide2}>
                     <Text style={styles.text}>Beautiful</Text>
