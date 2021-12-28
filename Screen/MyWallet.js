@@ -19,14 +19,13 @@ export default function MyWallet({navigation}) {
     const [number,setNumber] = useState('')
     const [expiry,setExpiry] = useState('')
     const [cvc,setCvc] = useState('')
+    const [result,setResult] = useState("")
 
     const dsfsd = (form) => {
         setNumber(form.values.number)
         setExpiry(form.values.expiry)
         setCvc(form.values.cvc)
-        console.log(number)
-        console.log(expiry)
-        console.log(cvc)
+
     }
 
 
@@ -42,14 +41,11 @@ export default function MyWallet({navigation}) {
             </View>
 
             <View style={{marginTop:70}}>
-                < CreditCardInput onChange = {dsfsd}/>
+                < CreditCardInput placeholders = {{number: number, expiry: expiry, cvc: expiry }} onChange = {dsfsd}/>
                 <TouchableOpacity onPress={async () => {
                      try {
                          await AsyncStorage.multiSet([['number', number], ['expiry', expiry], ['cvc', cvc]]);
                          const result = await AsyncStorage.multiGet(['number', 'expiry', 'cvc'])
-
-
-                         console.log(result)
                     } catch (err) {
                         console.log('error signing up: ', err)
                     }
@@ -59,7 +55,7 @@ export default function MyWallet({navigation}) {
                     </Text>
                 </TouchableOpacity>
             </View>
-            <ScrollView style={{flex:1,}}>
+            <ScrollView style={{flex:1}}>
                 {
                     PayB.map(item => {
                         return(
@@ -72,6 +68,26 @@ export default function MyWallet({navigation}) {
                     )
                 }
             </ScrollView>
+
+
+            <ScrollView style={{flex: 1}}>
+
+                <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <TouchableOpacity onPress={async () => {
+                        try {
+                            setResult( await AsyncStorage.multiGet(['number', 'expiry', 'cvc']))
+                        } catch (err) {
+                            console.log('error signing up: ', err)
+                        }
+                    }}>
+
+                        <Text>ggbljhg</Text>
+                    </TouchableOpacity>
+                    <Text></Text>
+                    <Text>{result[0][1]} {result[1][1]} {result[2][1]}</Text>
+                </View>
+            </ScrollView>
+
 
         </View>
     );
