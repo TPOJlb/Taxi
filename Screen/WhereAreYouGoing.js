@@ -4,6 +4,7 @@ import {SafeAreaView,Platform,Text,View, StyleSheet,TouchableOpacity,KeyboardAvo
 import MapViewDirections from 'react-native-maps-directions';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Geocoder from "react-native-geocoding";
+import ChooseCar from "../MapSlide/ChooseCar";
 
 
 
@@ -11,10 +12,8 @@ import Geocoder from "react-native-geocoding";
 
 export default function WhereAreYouGoing({listNam,setListNam,locat,setLocat,refContainer}) {
     Geocoder.init("AIzaSyDl64BEliK8_tgkLSycOiXIZKszLXS7goQ", {language : "ru"});
-    console.log(locat);
-
     return (
-        <View style={{flex:1}}>
+        <View key={12334} style={{flex:1}}>
             < View style={{position: 'absolute',width: '80%', height: '100%',left:35,  top: 100}}>
                 <GooglePlacesAutocomplete
                     fetchDetails={true}
@@ -40,11 +39,17 @@ export default function WhereAreYouGoing({listNam,setListNam,locat,setLocat,refC
                 />
             </View>
         <View style={{position: 'absolute',width: '80%', height: '5%',left:35,top: 145}}>
-            <TouchableOpacity onPress={()=> setListNam(listNam + 1)}>
+
+            {(locat === "" ) ? <TouchableOpacity onPress={()=> alert('Выберите маршрут')}>
                 <Text>
                     Погнали дальше)))
                 </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> : <TouchableOpacity onPress={()=> setListNam(listNam + 1)}>
+                <Text>
+                    Погнали дальше)))
+                </Text>
+            </TouchableOpacity> }
+
         </View>
         </View>
     );

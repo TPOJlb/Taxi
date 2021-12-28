@@ -10,6 +10,8 @@ import Swiper from "react-native-swiper";
 import SwiperPage from "./Swiper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import PersonInfo from "../PersonInfo";
+import MyWallet from "./MyWallet";
+import History from "./History";
 
 export default function LeftMenu({route,navigation}) {
 
@@ -22,7 +24,7 @@ export default function LeftMenu({route,navigation}) {
                         <DrawerItemList {...props} />
                     </DrawerContentScrollView>
                 <TouchableOpacity onPress={()=>{
-                    alert("Ты вышел")
+                    navigation.navigate('Authentication')
                 }}>
                 <Text>Exit</Text>
                 </TouchableOpacity>
@@ -35,13 +37,13 @@ const location = route.params.location;
         <Drawer.Navigator
             screenOptions={{ headerShown: false }}
             drawerContent={ props => <CustomDrawer {...props} /> }
-            initialRouteName="Person"
+            initialRouteName="Map"
         >
 
                 <Drawer.Screen name="Home" component={HomePage} />
-                <Drawer.Screen name="Swiper" component={SwiperPage}/>
-                 <Drawer.Screen name="Person"  component={Person} initialParams={{ location: location }} />
-            <Drawer.Screen name="PersonInfo" component={PersonInfo} />
+                <Drawer.Screen name="History" component={History} />
+                 <Drawer.Screen name="Map"  component={Person} initialParams={{ location: location }} />
+            <Drawer.Screen name="My wallet" component={MyWallet} />
             </Drawer.Navigator>
     );
 }

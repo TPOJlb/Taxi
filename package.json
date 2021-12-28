@@ -26,6 +26,7 @@
     "react-native": "0.64.3",
     "react-native-android-keyboard-adjust": "^1.2.0",
     "react-native-confirmation-code-field": "^7.2.0",
+    "react-native-credit-card-input": "^0.4.1",
     "react-native-drawer": "^2.5.1",
     "react-native-elements": "^3.4.2",
     "react-native-geocoding": "^0.5.0",
