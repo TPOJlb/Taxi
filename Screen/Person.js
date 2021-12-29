@@ -8,8 +8,11 @@ import WhereAreYouGoing from "./WhereAreYouGoing";
 import ChooseCar from '../MapSlide/ChooseCar';
 import Pay from '../Pay';
 import { Entypo } from '@expo/vector-icons';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-
+const second = async ()=>{
+    return await AsyncStorage.getItem("FirstEntrance")
+}
 
 
 export default function Person({route,navigation}) {
@@ -18,14 +21,31 @@ export default function Person({route,navigation}) {
     const [distan,setDistan] = useState(0)
     const [listNam,setListNam] = useState(1)
     const[locat,setLocat] = useState('');
-    const origin = {latitude: route.params.location.coords.latitude, longitude: route.params.location.coords.longitude};
+    let origin = 0;
+    let l1 =0
+    let l2 =0
+    if(second == null ){
+        origin = {latitude: 46.8427096, longitude: 35.3686007};
+        l1 = 46.8427096
+        l2 = 35.3686007
+    }else{
+
+        origin = {latitude: route.params.location.coords.latitude, longitude: route.params.location.coords.longitude};
+        l1 =route.params.location.coords.latitude
+        l2 =route.params.location.coords.longitude
+
+    }
+
+
+
+
     Geocoder.init("AIzaSyDl64BEliK8_tgkLSycOiXIZKszLXS7goQ", {language : "ru"});
     return (
         <View style={StyleSheet.absoluteFillObject}>
 
             <MapView style={StyleSheet.absoluteFillObject} showsUserLocation={true} showsMyLocationButton={false} showsCompass={false} initialRegion={{
-                latitude: route.params.location.coords.latitude,
-                longitude: route.params.location.coords.longitude,
+                latitude: l1,
+                longitude:l2,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
             }}>

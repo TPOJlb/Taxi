@@ -8,24 +8,8 @@ import AddPaymentMethod from "./AddPaymentMethod";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
-
-const _retrieveData = async () => {
-    try {
-        const value = await AsyncStorage.getItem('Money');
-        if (value !== null) {
-            // We have data!!
-            console.log(value);
-        }
-    } catch (error) {
-        // Error retrieving data
-    }
-};
-
-
-
-
 export default function MyWallet({navigation}) {
-    const [money,setMoney] = useState(60598.68)
+    const [money,setMoney] = useState('')
     const [number,setNumber] = useState('')
     const [expiry,setExpiry] = useState('')
     const [cvc,setCvc] = useState('')

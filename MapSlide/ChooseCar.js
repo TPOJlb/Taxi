@@ -9,16 +9,17 @@ import { AntDesign } from '@expo/vector-icons';
 
 export default function ChooseCar({listNam,setListNam,distan,setDistan,dura,setDura}) {
     const [mony,setMony] = useState('')
-
+    const numbers = [];
 
     return (
         <View style={{flex:1}}>
             <ScrollView style={{position: 'absolute',width: '80%', height: '18.5%',left:35,top: 552}}>{
                 CarB.map(item => {
-
+                    numbers.push(item.price);
+                    console.log(numbers)
                     return(
                         <View key={item.key} style={{flex: 1, backgroundColor: 'white', width: '100%', height: 60,borderWidth:2,borderRadius:15,borderColor:'black',marginBottom:3}}>
-                            <TouchableOpacity style={{flexDirection:'row',flex: 1,margin:3}} onPress={()=> {
+                            <TouchableOpacity key={item.key} style={{flexDirection:'row',flex: 1,margin:3}} onPress={()=> {
                                 setListNam(listNam + 1)
 
                             }}>
