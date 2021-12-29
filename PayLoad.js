@@ -1,0 +1,18 @@
+import React from 'react';
+import {ScrollView,SafeAreaView,Platform,Text,View, StyleSheet,TouchableOpacity,KeyboardAvoidingView,Image} from 'react-native';
+import {PayB} from "../PayBase";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
+
+
+export default function PayLoad() {
+
+
+    return (
+        <View style={{flex: 1}}>
+
+        </View>
+    );
+
+}

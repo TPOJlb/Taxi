@@ -9,13 +9,23 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
-
+const _retrieveData = async () => {
+    try {
+        const value = await AsyncStorage.getItem('Money');
+        if (value !== null) {
+            // We have data!!
+            console.log(value);
+        }
+    } catch (error) {
+        // Error retrieving data
+    }
+};
 
 
 
 
 export default function MyWallet({navigation}) {
-
+    const [money,setMoney] = useState(60598.68)
     const [number,setNumber] = useState('')
     const [expiry,setExpiry] = useState('')
     const [cvc,setCvc] = useState('')
@@ -32,11 +42,12 @@ export default function MyWallet({navigation}) {
     return (
         <View style={{flex: 1}}>
 
-            <View style={{flex:1,position: 'absolute',top: 30,left:10}}>
+            <View style={{flex:1,position: 'absolute',top: 30,left:10,flexDirection:'row'}}>
 
                 <TouchableOpacity onPress={()=>navigation.openDrawer()}>
                     <Entypo name="menu" size={40} color="black" />
                 </TouchableOpacity>
+                <Text>{money}</Text>
 
             </View>
 
@@ -84,7 +95,8 @@ export default function MyWallet({navigation}) {
                         <Text>ggbljhg</Text>
                     </TouchableOpacity>
                     <Text></Text>
-                    <Text>{result[0][1]} {result[1][1]} {result[2][1]}</Text>
+                    {(result !== '')? <Text>{result[0][1]} {result[1][1]} {result[2][1]}</Text>:null}
+
                 </View>
             </ScrollView>
 

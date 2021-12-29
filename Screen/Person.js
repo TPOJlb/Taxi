@@ -17,7 +17,7 @@ export default function Person({route,navigation}) {
     const [dura,setDura] = useState(0)
     const [distan,setDistan] = useState(0)
     const [listNam,setListNam] = useState(1)
-        const[locat,setLocat] = useState('');
+    const[locat,setLocat] = useState('');
     const origin = {latitude: route.params.location.coords.latitude, longitude: route.params.location.coords.longitude};
     Geocoder.init("AIzaSyDl64BEliK8_tgkLSycOiXIZKszLXS7goQ", {language : "ru"});
     return (
