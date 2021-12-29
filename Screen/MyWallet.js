@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView,SafeAreaView,Platform,Text,View, StyleSheet,TouchableOpacity,KeyboardAvoidingView,Image } from 'react-native';
 import {AntDesign, Entypo} from '@expo/vector-icons';
 import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
@@ -8,12 +8,21 @@ import AddPaymentMethod from "./AddPaymentMethod";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
+
 export default function MyWallet({navigation}) {
+
+
+
+
     const [money,setMoney] = useState('')
     const [number,setNumber] = useState('')
     const [expiry,setExpiry] = useState('')
     const [cvc,setCvc] = useState('')
     const [result,setResult] = useState("")
+
+    useEffect(async () => {
+        setMoney(await AsyncStorage.getItem('Money'))
+    }, [''])
 
     const dsfsd = (form) => {
         setNumber(form.values.number)
@@ -23,12 +32,14 @@ export default function MyWallet({navigation}) {
     }
 
 
+    console.log(money)
+
     return (
         <View style={{flex: 1}}>
-
             <View style={{flex:1,position: 'absolute',top: 30,left:10,flexDirection:'row'}}>
 
                 <TouchableOpacity onPress={()=>navigation.openDrawer()}>
+
                     <Entypo name="menu" size={40} color="black" />
                 </TouchableOpacity>
                 <Text>{money}</Text>
