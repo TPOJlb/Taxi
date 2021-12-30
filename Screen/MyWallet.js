@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState } from 'react';
 import {ScrollView,SafeAreaView,Platform,Text,View, StyleSheet,TouchableOpacity,KeyboardAvoidingView,Image } from 'react-native';
 import {AntDesign, Entypo} from '@expo/vector-icons';
 import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
@@ -7,22 +7,15 @@ import {PayB} from "../PayBase";
 import AddPaymentMethod from "./AddPaymentMethod";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+export default function MyWallet({navigation,route}) {
 
+    const [money, setMoney] = useState('')
+    const [number, setNumber] = useState('')
+    const [expiry, setExpiry] = useState('')
+    const [cvc, setCvc] = useState('')
+    const [result, setResult] = useState("")
+    const [elev, setElev] = useState('213')
 
-export default function MyWallet({navigation}) {
-
-
-
-
-    const [money,setMoney] = useState('')
-    const [number,setNumber] = useState('')
-    const [expiry,setExpiry] = useState('')
-    const [cvc,setCvc] = useState('')
-    const [result,setResult] = useState("")
-
-    useEffect(async () => {
-        setMoney(await AsyncStorage.getItem('Money'))
-    }, [''])
 
     const dsfsd = (form) => {
         setNumber(form.values.number)
@@ -32,7 +25,16 @@ export default function MyWallet({navigation}) {
     }
 
 
-    console.log(money)
+    if (elev !== money) {
+        useEffect(async () => {
+            setMoney(await AsyncStorage.getItem("Money"))
+            setElev(money)
+        }, [])
+    }
+
+
+    console.log(route)
+
 
     return (
         <View style={{flex: 1}}>
@@ -43,7 +45,6 @@ export default function MyWallet({navigation}) {
                     <Entypo name="menu" size={40} color="black" />
                 </TouchableOpacity>
                 <Text>{money}</Text>
-
             </View>
 
             <View style={{marginTop:70}}>
@@ -81,7 +82,7 @@ export default function MyWallet({navigation}) {
                 <View style={{alignItems: 'center', justifyContent: 'center'}}>
                     <TouchableOpacity onPress={async () => {
                         try {
-                            setResult( await AsyncStorage.multiGet(['number', 'expiry', 'cvc']))
+                            setResult(await AsyncStorage.multiGet(['number', 'expiry', 'cvc']))
                         } catch (err) {
                             console.log('error signing up: ', err)
                         }

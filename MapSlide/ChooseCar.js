@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView,SafeAreaView,Platform,Text,View, StyleSheet,TouchableOpacity,KeyboardAvoidingView,Image} from 'react-native';
 import {CarB} from "../CarBase";
 import { AntDesign } from '@expo/vector-icons';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
@@ -9,7 +10,11 @@ import { AntDesign } from '@expo/vector-icons';
 
 export default function ChooseCar({listNam,setListNam,distan,setDistan,dura,setDura}) {
     const [mony,setMony] = useState('')
+    const [nony,setNony] = useState('')
     const numbers = [];
+    useEffect(async () => {
+        setNony(await AsyncStorage.getItem('Money'))
+    }, [''])
 
     return (
         <View style={{flex:1}}>
@@ -18,7 +23,21 @@ export default function ChooseCar({listNam,setListNam,distan,setDistan,dura,setD
                     numbers.push(item.price);
                     return(
                         <View key={item.key} style={{flex: 1, backgroundColor: 'white', width: '100%', height: 60,borderWidth:2,borderRadius:15,borderColor:'black',marginBottom:3}}>
-                            <TouchableOpacity key={item.key} style={{flexDirection:'row',flex: 1,margin:3}} onPress={()=> {
+                            <TouchableOpacity key={item.key} style={{flexDirection:'row',flex: 1,margin:3}} onPress={async ()=> {
+
+                                let mon = (item.price * distan)
+                                const result = parseFloat(nony) - parseFloat(mon)
+                                const remef  = parseFloat(result.toFixed(2))
+                                const ferm = remef.toString()
+                                console.log(ferm)
+
+                                try {
+                                    await AsyncStorage.setItem('Money', ferm);
+                                   const rrs =  await AsyncStorage.getItem('Money')
+                                    console.log("qwerty: " + rrs)
+                                } catch (err) {
+                                    console.log('error signing up: ', err)
+                                }
                                 setListNam(listNam + 1)
                             }}>
                                 <Image source={item.image} style={{width: '20%', height: 54}}/>

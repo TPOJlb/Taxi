@@ -12,6 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import PersonInfo from "../PersonInfo";
 import MyWallet from "./MyWallet";
 import History from "./History";
+import {useEffect, useState} from "react";
 
 export default function LeftMenu({route,navigation}) {
 
@@ -32,12 +33,12 @@ export default function LeftMenu({route,navigation}) {
     )
 }
 const location = route.params.location;
-
     return (
         <Drawer.Navigator
             screenOptions={{ headerShown: false }}
             drawerContent={ props => <CustomDrawer {...props} /> }
             initialRouteName="Map"
+            onPress={()=>console.log(1231)}
         >
 
                 <Drawer.Screen name="Home" component={HomePage} />
