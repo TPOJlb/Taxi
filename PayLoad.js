@@ -1,18 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView,SafeAreaView,Platform,Text,View, StyleSheet,TouchableOpacity,KeyboardAvoidingView,Image} from 'react-native';
-import {PayB} from "../PayBase";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import styles from "react-native-phone-number-input/lib/styles";
 
 
 
 
-export default function PayLoad() {
+export default function PayLoad({focus}) {
 
+console.log("324234"+focus)
+        const [result, setResult] = useState('')
 
-    return (
-        <View style={{flex: 1}}>
+        useEffect(async () => {
+            try {
+                setResult(await AsyncStorage.getItem("Money"))
+                console.log(result)
+            } catch (err) {
+                console.log('error signing up: ', err)
+            }
 
-        </View>
-    );
+        }, [''])
+    if (result === '') {
+        return (<View style={{flex:1}}>
+            <Text>122545.23</Text>
+        </View>);
+    } else {
+        return (<View style={{flex:1}}>
+            <Text>{result}</Text>
+        </View>);
+    }
 
 }

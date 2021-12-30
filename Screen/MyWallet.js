@@ -6,16 +6,16 @@ import {CarB} from "../CarBase";
 import {PayB} from "../PayBase";
 import AddPaymentMethod from "./AddPaymentMethod";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import PayLoad from "../PayLoad";
+
 
 export default function MyWallet({navigation,route}) {
 
-    const [money, setMoney] = useState('')
+
     const [number, setNumber] = useState('')
     const [expiry, setExpiry] = useState('')
     const [cvc, setCvc] = useState('')
     const [result, setResult] = useState("")
-    const [elev, setElev] = useState('213')
-
 
     const dsfsd = (form) => {
         setNumber(form.values.number)
@@ -24,17 +24,7 @@ export default function MyWallet({navigation,route}) {
 
     }
 
-
-    if (elev !== money) {
-        useEffect(async () => {
-            setMoney(await AsyncStorage.getItem("Money"))
-            setElev(money)
-        }, [])
-    }
-
-
-    console.log(route)
-
+    const focus = navigation.isFocused();
 
     return (
         <View style={{flex: 1}}>
@@ -44,7 +34,7 @@ export default function MyWallet({navigation,route}) {
 
                     <Entypo name="menu" size={40} color="black" />
                 </TouchableOpacity>
-                <Text>{money}</Text>
+                <PayLoad focus = {focus}/>
             </View>
 
             <View style={{marginTop:70}}>
@@ -90,7 +80,7 @@ export default function MyWallet({navigation,route}) {
 
                         <Text>ggbljhg</Text>
                     </TouchableOpacity>
-                    <Text></Text>
+                    <Text>  </Text>
                     {(result !== '')? <Text>{result[0][1]} {result[1][1]} {result[2][1]}</Text>:null}
 
                 </View>
@@ -100,7 +90,12 @@ export default function MyWallet({navigation,route}) {
         </View>
     );
 
+
+
 }
+
+
+
 
 
 

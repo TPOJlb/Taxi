@@ -7,7 +7,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
-
 export default function ChooseCar({listNam,setListNam,distan,setDistan,dura,setDura}) {
     const [mony,setMony] = useState('')
     const [nony,setNony] = useState('')
@@ -15,6 +14,7 @@ export default function ChooseCar({listNam,setListNam,distan,setDistan,dura,setD
     useEffect(async () => {
         setNony(await AsyncStorage.getItem('Money'))
     }, [''])
+
 
     return (
         <View style={{flex:1}}>
@@ -38,7 +38,7 @@ export default function ChooseCar({listNam,setListNam,distan,setDistan,dura,setD
                                 } catch (err) {
                                     console.log('error signing up: ', err)
                                 }
-                                setListNam(listNam + 1)
+                                {setListNam(listNam + 1)}
                             }}>
                                 <Image source={item.image} style={{width: '20%', height: 54}}/>
                                 <View style={{justifyContent:'center',flex:1}}>
