@@ -46,7 +46,7 @@ export default function MyWallet({navigation,route}) {
                 <TouchableOpacity onPress={async () => {
                      try {
                          await AsyncStorage.multiSet([['number', number], ['expiry', expiry], ['cvc', cvc]]);
-                         const result = await AsyncStorage.multiGet(['number', 'expiry', 'cvc'])
+                         // const result = await AsyncStorage.multiGet(['number', 'expiry', 'cvc'])
                     } catch (err) {
                         console.log('error signing up: ', err)
                     }
