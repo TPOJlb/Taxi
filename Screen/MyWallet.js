@@ -7,15 +7,19 @@ import {PayB} from "../PayBase";
 import AddPaymentMethod from "./AddPaymentMethod";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import PayLoad from "../PayLoad";
+import { createStore } from 'redux';
+import counter from "../reduxer"
+
+
 
 
 export default function MyWallet({navigation,route}) {
-
 
     const [number, setNumber] = useState('')
     const [expiry, setExpiry] = useState('')
     const [cvc, setCvc] = useState('')
     const [result, setResult] = useState("")
+
 
     const dsfsd = (form) => {
         setNumber(form.values.number)
@@ -23,6 +27,8 @@ export default function MyWallet({navigation,route}) {
         setCvc(form.values.cvc)
 
     }
+
+
 
     const focus = navigation.isFocused();
 
@@ -34,7 +40,7 @@ export default function MyWallet({navigation,route}) {
 
                     <Entypo name="menu" size={40} color="black" />
                 </TouchableOpacity>
-                <PayLoad focus = {focus}/>
+                <Text>123</Text>
             </View>
 
             <View style={{marginTop:70}}>
@@ -73,6 +79,7 @@ export default function MyWallet({navigation,route}) {
                     <TouchableOpacity onPress={async () => {
                         try {
                             setResult(await AsyncStorage.multiGet(['number', 'expiry', 'cvc']))
+
                         } catch (err) {
                             console.log('error signing up: ', err)
                         }

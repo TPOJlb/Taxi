@@ -32,7 +32,7 @@ export default function HomePage({navigation}) {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={()=>navigation.navigate('AddPhone')}>
+            <TouchableOpacity onPress={()=>navigation.navigate('Authentication')}>
                 <Text>HomePage</Text>
             </TouchableOpacity>
         </View>);

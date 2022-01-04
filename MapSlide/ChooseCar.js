@@ -3,6 +3,8 @@ import {ScrollView,SafeAreaView,Platform,Text,View, StyleSheet,TouchableOpacity,
 import {CarB} from "../CarBase";
 import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createStore } from 'redux';
+import {taskCommunication} from "../reduxer"
 
 
 
@@ -11,9 +13,12 @@ export default function ChooseCar({listNam,setListNam,distan,setDistan,dura,setD
     const [mony,setMony] = useState('')
     const [nony,setNony] = useState('')
     const numbers = [];
+
+    console.log(taskCommunication)
     useEffect(async () => {
         setNony(await AsyncStorage.getItem('Money'))
     }, [''])
+
 
 
     return (
@@ -25,16 +30,12 @@ export default function ChooseCar({listNam,setListNam,distan,setDistan,dura,setD
                         <View key={item.key} style={{flex: 1, backgroundColor: 'white', width: '100%', height: 60,borderWidth:2,borderRadius:15,borderColor:'black',marginBottom:3}}>
                             <TouchableOpacity key={item.key} style={{flexDirection:'row',flex: 1,margin:3}} onPress={async ()=> {
 
-                                let mon = (item.price * distan)
+                                const mon = (item.price * distan).toFixed(2)
                                 const result = parseFloat(nony) - parseFloat(mon)
                                 const remef  = parseFloat(result.toFixed(2))
                                 const ferm = remef.toString()
-                                console.log(ferm)
-
                                 try {
                                     await AsyncStorage.setItem('Money', ferm);
-                                   const rrs =  await AsyncStorage.getItem('Money')
-                                    console.log("qwerty: " + rrs)
                                 } catch (err) {
                                     console.log('error signing up: ', err)
                                 }
