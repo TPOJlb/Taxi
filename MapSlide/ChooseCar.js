@@ -4,7 +4,6 @@ import {CarB} from "../CarBase";
 import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createStore } from 'redux';
-import {taskCommunication} from "../reduxer"
 
 
 
@@ -14,7 +13,6 @@ export default function ChooseCar({listNam,setListNam,distan,setDistan,dura,setD
     const [nony,setNony] = useState('')
     const numbers = [];
 
-    console.log(taskCommunication)
     useEffect(async () => {
         setNony(await AsyncStorage.getItem('Money'))
     }, [''])

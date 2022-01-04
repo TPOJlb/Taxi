@@ -11,8 +11,6 @@ import { createStore } from 'redux';
 import counter from "../reduxer"
 
 
-
-
 export default function MyWallet({navigation,route}) {
 
     const [number, setNumber] = useState('')
@@ -79,7 +77,9 @@ export default function MyWallet({navigation,route}) {
                     <TouchableOpacity onPress={async () => {
                         try {
                             setResult(await AsyncStorage.multiGet(['number', 'expiry', 'cvc']))
-
+                            console.log(result)
+                            const resul = await AsyncStorage.multiGet(['number', 'expiry', 'cvc'])
+                            console.log(resul)
                         } catch (err) {
                             console.log('error signing up: ', err)
                         }
