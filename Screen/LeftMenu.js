@@ -14,6 +14,7 @@ import PersonInfo from "../PersonInfo";
 import MyWallet from "./MyWallet";
 import History from "./History";
 import {useEffect, useState} from "react";
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function LeftMenu({route, navigation}) {
 
@@ -21,15 +22,20 @@ export default function LeftMenu({route, navigation}) {
     function CustomDrawer(props) {
         return (
             <View style={{flex: 1}}>
+                <LinearGradient
+                    colors={['#ff0066', '#cc6600']}
+                    style={{flex: 1}}
 
+                >
                 <DrawerContentScrollView {...props}>
                     <DrawerItemList {...props} />
                 </DrawerContentScrollView>
-                <TouchableOpacity onPress={() => {
-                    navigation.navigate('Authentication')
+                <TouchableOpacity style={{marginLeft:15,marginBottom:10}} onPress={() => {
+                    navigation.navigate('Swiper')
                 }}>
-                    <Text>Exit</Text>
+                    <Text style={{fontSize:14,fontFamily:'RobotoLight'}}>Exit</Text>
                 </TouchableOpacity>
+            </LinearGradient>
             </View>
         )
 

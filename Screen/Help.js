@@ -116,11 +116,10 @@ const Help = ({navigation,route}) => {
 
             <TouchableOpacity style={{padding:10,justifyContent:'center',alignItems:'center',borderWidth:1 , marginRight:50,marginLeft:50,borderColor:'purple',backgroundColor:'purple',borderRadius:10}} onPress={()=>{
                 if(value.toString()===code.toString()){
-                alert('Пин-код верный')
                     navigation.navigate('LeftMenu',{location})}
             else{
                     alert('Пин-код не опознан')
-                navigation.navigate('LeftMenu',{location})
+                navigation.navigate('AddPhone',{location})
                               }}}>
                 <Text style={{fontFamily:'RobotoRegular',fontSize:22}}>Проверить</Text>
             </TouchableOpacity>

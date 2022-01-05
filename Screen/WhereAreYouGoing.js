@@ -5,12 +5,16 @@ import MapViewDirections from 'react-native-maps-directions';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Geocoder from "react-native-geocoding";
 import ChooseCar from "../MapSlide/ChooseCar";
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 
 
 
 export default function WhereAreYouGoing({listNam,setListNam,locat,setLocat,refContainer}) {
+
+    const [open,setOpen] = useState('')
+
     Geocoder.init("AIzaSyDl64BEliK8_tgkLSycOiXIZKszLXS7goQ", {language : "ru"});
     return (
         <View key={12334} style={{flex:1}}>
@@ -25,7 +29,7 @@ export default function WhereAreYouGoing({listNam,setListNam,locat,setLocat,refC
                             .then(json => {
                                 const location = json.results[0].geometry.location;
                                 setLocat(location)
-
+                                setOpen(1)
                             })
                             .catch(error => console.warn(error));
 
@@ -38,17 +42,14 @@ export default function WhereAreYouGoing({listNam,setListNam,locat,setLocat,refC
 
                 />
             </View>
-        <View style={{position: 'absolute',width: '80%', height: '5%',left:35,top: 145}}>
+        <View style={{position: 'absolute',width: '50%', height: '7%',left:85,top: 155,justifyContent:'center',alignItems:'center'}}>
 
-            {(locat === "" ) ? <TouchableOpacity onPress={()=> alert('Выберите маршрут')}>
-                <Text>
-                    Погнали дальше)))
+            {(open === '') ? <Text> </Text> :<TouchableOpacity style={{backgroundColor:'green',padding:10,borderRadius:15}} onPress={() => setListNam(listNam + 1)}>
+                <Text style={{color: 'white'}}>
+                    Выбрать автомобиль
                 </Text>
-            </TouchableOpacity> : <TouchableOpacity onPress={()=> setListNam(listNam + 1)}>
-                <Text>
-                    Погнали дальше)))
-                </Text>
-            </TouchableOpacity> }
+            </TouchableOpacity>
+           }
 
         </View>
         </View>
