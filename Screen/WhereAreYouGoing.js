@@ -33,7 +33,6 @@ export default function WhereAreYouGoing({listNam,setListNam,locat,setLocat,refC
                             })
                             .catch(error => console.warn(error));
 
-                        console.log(locat);
                     }}
                     query={{
                         key: 'AIzaSyAmeaHFFepK5IAB_W8MMJp_V9cVmfUvrmE',

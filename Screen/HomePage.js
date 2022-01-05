@@ -17,13 +17,12 @@ const fhtee = async ()=>{
 
 export default function HomePage({navigation}) {
     const [thee, setThee] = useState('');
-    console.log('1'+thee);
     useEffect(async () => {
 
         await AsyncStorage.setItem('Money', '122545.23');
         setThee(await second());
-        //await first();
-     await fhtee();
+        await first();
+     //await fhtee();
     }, [''])
     if (thee == null) {
         navigation.navigate('Swiper');
