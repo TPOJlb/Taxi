@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react';
-import {StyleSheet, Text, View,TouchableOpacity } from 'react-native'
+import {StyleSheet, Text, View,TouchableOpacity,Image } from 'react-native'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const first = async ()=>{
@@ -22,8 +22,8 @@ export default function HomePage({navigation}) {
 
         await AsyncStorage.setItem('Money', '122545.23');
         setThee(await second());
-        await first();
-     //await fhtee();
+        //await first();
+     await fhtee();
     }, [''])
     if (thee == null) {
         navigation.navigate('Swiper');
@@ -32,9 +32,13 @@ export default function HomePage({navigation}) {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={()=>navigation.navigate('Authentication')}>
-                <Text>HomePage</Text>
-            </TouchableOpacity>
+            <View onPress={()=>navigation.navigate('Authentication')}>
+                <Image
+                    style={{width:100,height:100}}
+                    source={require('../Image/loading.png')}
+                />
+                <Text>      Loading...</Text>
+            </View>
         </View>);
 }
 

@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import {SafeAreaView, Text, StyleSheet,TouchableOpacity} from 'react-native';
+import {SafeAreaView, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import * as Location from 'expo-location';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Geocoder from 'react-native-geocoding';
@@ -10,10 +10,11 @@ import {
     useBlurOnFulfill,
     useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const styles = StyleSheet.create({
     root: {flex: 1, padding: 20},
-    title: {textAlign: 'center', fontSize: 30},
+    title: {textAlign: 'center', fontSize: 30,fontFamily:'RobotoRegular'},
     codeFieldRoot: {marginTop: 20},
     cell: {
         width: 40,
@@ -67,9 +68,28 @@ const Help = ({navigation,route}) => {
     }
 
     return (
-        <SafeAreaView style={styles.root}>
-            <Text style={styles.title}>Verification</Text>
+        <SafeAreaView style={{flex:1}}>
+            <LinearGradient
+                colors={['#ff0066', '#cc6600']}
+                style={styles.root}
+            >
+            <Text></Text>
+            <Text></Text>
+            <Text></Text>
+
+            <Text style={styles.title}>Введите код из сообщения</Text>
+
+                <Image
+                    style={{width:100,height:100,position:'absolute',left:130,top:170}}
+                    source={require('../Image/text-message.png')}
+                />
+                <Text></Text>
+                <Text></Text>
+                <Text></Text>
+                <Text></Text><Text></Text><Text></Text>
+
             <CodeField
+
                 ref={ref}
                 {...props}
                 // Use `caretHidden={false}` when users can't paste a text value, because context menu doesn't appear
@@ -88,16 +108,23 @@ const Help = ({navigation,route}) => {
                     </Text>
 
                 )}
-            />
-            <TouchableOpacity onPress={()=>{
+                />
+            <Text></Text>
+            <Text></Text>
+            <Text></Text>
+                <Text></Text>
+
+            <TouchableOpacity style={{padding:10,justifyContent:'center',alignItems:'center',borderWidth:1 , marginRight:50,marginLeft:50,borderColor:'purple',backgroundColor:'purple',borderRadius:10}} onPress={()=>{
                 if(value.toString()===code.toString()){
-                alert('Пароль верный')}
+                alert('Пин-код верный')
+                    navigation.navigate('LeftMenu',{location})}
             else{
+                    alert('Пин-код не опознан')
                 navigation.navigate('LeftMenu',{location})
                               }}}>
-                <Text>21123412</Text>
+                <Text style={{fontFamily:'RobotoRegular',fontSize:22}}>Проверить</Text>
             </TouchableOpacity>
-
+            </LinearGradient>
 
         </SafeAreaView>
     );

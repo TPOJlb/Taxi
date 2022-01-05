@@ -43,7 +43,10 @@
     "react-native-swiper": "^1.6.0-rc.3",
     "react-native-web": "0.17.1",
     "react-phone-number-input": "^3.1.41",
-    "redux": "^4.1.2"
+    "redux": "^4.1.2",
+    "expo-app-loading": "~1.2.1",
+    "expo-font": "~10.0.3",
+    "expo-linear-gradient": "~10.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
